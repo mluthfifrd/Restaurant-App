@@ -6,13 +6,15 @@ import 'package:restaurant_app/data/model/restaurant_search.dart';
 
 class ApiService {
   static const String _baseUrl = 'https://restaurant-api.dicoding.dev';
+  static const String linkImage =
+      "https://restaurant-api.dicoding.dev/images/medium/";
 
-  Future<RestaurantList> getAllRestaurant() async {
+  Future<RestaurantListData> getAllRestaurant() async {
     final response = await http.get(Uri.parse("$_baseUrl/list"));
     if (response.statusCode == 200) {
       final dynamic jsonResponse = jsonDecode(response.body);
       if (jsonResponse is Map<String, dynamic>) {
-        final result = RestaurantList.fromJson(jsonResponse);
+        final result = RestaurantListData.fromJson(jsonResponse);
         return result;
       } else {
         throw Exception('Format JSON tidak sesuai');
@@ -22,12 +24,12 @@ class ApiService {
     }
   }
 
-  Future<RestaurantDetail> getDetailRestaurant(String id) async {
+  Future<RestaurantDetailData> getDetailRestaurant(String id) async {
     final response = await http.get(Uri.parse("$_baseUrl/detail/$id"));
     if (response.statusCode == 200) {
       final dynamic jsonResponse = jsonDecode(response.body);
       if (jsonResponse is Map<String, dynamic>) {
-        final result = RestaurantDetail.fromJson(jsonResponse);
+        final result = RestaurantDetailData.fromJson(jsonResponse);
         return result;
       } else {
         throw Exception('Format JSON tidak sesuai');
@@ -37,12 +39,12 @@ class ApiService {
     }
   }
 
-  Future<RestaurantSearch> findRestaurant(String query) async {
+  Future<RestaurantSearchData> findRestaurant(String query) async {
     final response = await http.get(Uri.parse("$_baseUrl/search?q=$query"));
     if (response.statusCode == 200) {
       final dynamic jsonResponse = jsonDecode(response.body);
       if (jsonResponse is Map<String, dynamic>) {
-        final result = RestaurantSearch.fromJson(jsonResponse);
+        final result = RestaurantSearchData.fromJson(jsonResponse);
         return result;
       } else {
         throw Exception('Format JSON tidak sesuai');
