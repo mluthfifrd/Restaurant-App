@@ -4,6 +4,8 @@ import 'package:restaurant_app/common/custom_widget/card_restaurant_search.dart'
 import 'package:restaurant_app/data/api/api_services.dart';
 import 'package:restaurant_app/provider/restaurant_search_provider.dart';
 
+import '../utils/result_state.dart';
+
 class RestaurantSearchPage extends StatefulWidget {
   static const routeName = '/search';
 
@@ -106,18 +108,19 @@ class _RestaurantSearchPageState extends State<RestaurantSearchPage> {
   Widget _findRestaurant() {
     return Consumer<RestaurantSearchProvider>(
       builder: (context, state, _) {
-        if (state.state == ResultSearchState.loading) {
+        if (state.state == ResultState.loading) {
           return const Center(child: CircularProgressIndicator());
-        } else if (state.state == ResultSearchState.hasData) {
+        } else if (state.state == ResultState.hasData) {
           return ListView.builder(
             shrinkWrap: true,
             itemCount: state.resultRestaurantSearch.restaurants.length,
             itemBuilder: (context, index) {
-              var restaurant = state.resultRestaurantSearch.restaurants[index];
-              return CardRestaurantSearch(restaurant: restaurant);
+              var restaurantSearch =
+                  state.resultRestaurantSearch.restaurants[index];
+              return CardRestaurantSearch(restaurantSearch: restaurantSearch);
             },
           );
-        } else if (state.state == ResultSearchState.noData) {
+        } else if (state.state == ResultState.noData) {
           return Center(
             child: Material(
               child: Column(
@@ -135,7 +138,7 @@ class _RestaurantSearchPageState extends State<RestaurantSearchPage> {
               ),
             ),
           );
-        } else if (state.state == ResultSearchState.error) {
+        } else if (state.state == ResultState.error) {
           return Center(
             child: Material(
               child: Text(state.message),
