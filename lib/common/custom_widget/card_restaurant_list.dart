@@ -1,15 +1,16 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:restaurant_app/data/api/api_services.dart';
 import 'package:restaurant_app/data/model/restaurant.dart';
 import 'package:restaurant_app/ui/restaurant_detail_page.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class CardRestaurantList extends StatelessWidget {
-  final Restaurant restaurant;
-  final String linkImage = "https://restaurant-api.dicoding.dev/images/medium/";
+  final RestaurantList restaurantList;
+  final String linkImage = ApiService.linkImage;
 
-  const CardRestaurantList({Key? key, required this.restaurant})
+  const CardRestaurantList({Key? key, required this.restaurantList})
       : super(key: key);
 
   @override
@@ -20,18 +21,18 @@ class CardRestaurantList extends StatelessWidget {
           borderRadius:
               BorderRadius.circular(10.0), // Atur radius sesuai keinginan Anda
           child: Hero(
-            tag: "$linkImage${restaurant.pictureId}",
+            tag: "$linkImage${restaurantList.pictureId}",
             child: Image.network(
-              "$linkImage${restaurant.pictureId}",
+              "$linkImage${restaurantList.pictureId}",
               width: 100,
               fit: BoxFit.fill,
             ),
           ),
         ),
         title: Hero(
-          tag: restaurant.name,
+          tag: restaurantList.name,
           child: Text(
-            restaurant.name,
+            restaurantList.name,
             style: Theme.of(context).textTheme.titleMedium,
           ),
         ),
@@ -45,7 +46,7 @@ class CardRestaurantList extends StatelessWidget {
                   size: 20,
                 ),
                 Text(
-                  'Kota ${restaurant.city}',
+                  'Kota ${restaurantList.city}',
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ],
@@ -54,7 +55,7 @@ class CardRestaurantList extends StatelessWidget {
             Row(
               children: [
                 RatingBar.builder(
-                  initialRating: restaurant.rating,
+                  initialRating: restaurantList.rating,
                   minRating: 1,
                   direction: Axis.horizontal,
                   allowHalfRating: true,
@@ -69,7 +70,7 @@ class CardRestaurantList extends StatelessWidget {
                 ),
                 const SizedBox(width: 5),
                 Text(
-                  restaurant.rating.toString(),
+                  restaurantList.rating.toString(),
                   style: Theme.of(context).textTheme.bodySmall,
                 )
               ],
@@ -78,7 +79,7 @@ class CardRestaurantList extends StatelessWidget {
         ),
         onTap: () {
           Navigator.of(context).pushNamed(RestaurantDetailPage.routeName,
-              arguments: restaurant.id);
+              arguments: restaurantList.id);
         },
       ),
     );
