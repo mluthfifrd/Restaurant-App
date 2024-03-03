@@ -34,7 +34,7 @@ class _RestaurantDetailAddReviewState extends State<RestaurantDetailAddReview> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Add Review",
+              "Berikan Ulasan",
               style: Theme.of(context).textTheme.headlineSmall,
             ),
             const SizedBox(height: 15),
@@ -66,7 +66,7 @@ class _RestaurantDetailAddReviewState extends State<RestaurantDetailAddReview> {
                     minLines: 1,
                     maxLines: 5,
                     decoration: InputDecoration(
-                      labelText: 'Review',
+                      labelText: 'Ulasan',
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(15),
                       ),
@@ -75,7 +75,7 @@ class _RestaurantDetailAddReviewState extends State<RestaurantDetailAddReview> {
                     ),
                     validator: (String? value) {
                       if (value == null || value.isEmpty) {
-                        return 'Masukan Pesan';
+                        return 'Masukan Ulasan';
                       }
                       return null;
                     },
@@ -93,7 +93,7 @@ class _RestaurantDetailAddReviewState extends State<RestaurantDetailAddReview> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content:
-                                  const Text('Berhasil Menambahkan Review'),
+                                  const Text('Berhasil Menambahkan Ulasan'),
                               // backgroundColor: Colors.blue.shade900,
                               action: SnackBarAction(
                                 textColor: Colors.white,
@@ -129,7 +129,7 @@ class _RestaurantDetailAddReviewState extends State<RestaurantDetailAddReview> {
                           bottom: 5.0,
                         ),
                         child: Text(
-                          'Tambah Review',
+                          'Tambah Ulasan',
                           style: Theme.of(context)
                               .textTheme
                               .titleMedium
