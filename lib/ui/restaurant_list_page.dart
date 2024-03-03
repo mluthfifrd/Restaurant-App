@@ -6,6 +6,8 @@ import 'package:restaurant_app/data/api/api_services.dart';
 import 'package:restaurant_app/provider/restaurant_list_provider.dart';
 import 'package:restaurant_app/ui/restaurant_search_page.dart';
 
+import '../utils/result_state.dart';
+
 class RestaurantListPage extends StatefulWidget {
   static const routeName = '/restaurant_list';
 
@@ -82,8 +84,9 @@ class _RestaurantListPageState extends State<RestaurantListPage> {
               shrinkWrap: true,
               itemCount: state.resultRestaurantList.restaurants.length,
               itemBuilder: (context, index) {
-                var restaurant = state.resultRestaurantList.restaurants[index];
-                return CardRestaurantList(restaurant: restaurant);
+                var restaurantList =
+                    state.resultRestaurantList.restaurants[index];
+                return CardRestaurantList(restaurantList: restaurantList);
               },
             );
           } else if (state.state == ResultState.noData) {
