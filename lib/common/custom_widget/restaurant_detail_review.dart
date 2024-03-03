@@ -16,7 +16,7 @@ class RestaurantDetailReview extends StatelessWidget {
       children: <Widget>[
         const SizedBox(height: 25),
         Text(
-          "Review Customer (${reviews.length})",
+          "Ulasan Pelanggan (${reviews.length})",
           style: Theme.of(context).textTheme.headlineSmall,
         ),
         Column(
