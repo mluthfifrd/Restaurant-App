@@ -5,8 +5,7 @@ import 'dart:async';
 import 'package:restaurant_app/data/api/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/model/restaurant_search.dart';
-
-enum ResultSearchState { loading, noData, hasData, error }
+import 'package:restaurant_app/utils/result_state.dart';
 
 class RestaurantSearchProvider extends ChangeNotifier {
   late final ApiService apiService;
@@ -16,32 +15,32 @@ class RestaurantSearchProvider extends ChangeNotifier {
     findRestaurant(query);
   }
 
-  late RestaurantSearch _restaurantSearch;
-  late ResultSearchState _state;
+  late RestaurantSearchData _restaurantSearch;
+  late ResultState _state;
   String _message = "";
 
   String get message => _message;
 
-  RestaurantSearch get resultRestaurantSearch => _restaurantSearch;
+  RestaurantSearchData get resultRestaurantSearch => _restaurantSearch;
 
-  ResultSearchState get state => _state;
+  ResultState get state => _state;
 
   Future<dynamic> findRestaurant(String query) async {
     try {
-      _state = ResultSearchState.loading;
+      _state = ResultState.loading;
       notifyListeners();
       final response = await apiService.findRestaurant(query);
       if (response.restaurants.isEmpty) {
-        _state = ResultSearchState.noData;
+        _state = ResultState.noData;
         notifyListeners();
         return _message = 'Restoran Tidak Ditemukan';
       } else {
-        _state = ResultSearchState.hasData;
+        _state = ResultState.hasData;
         notifyListeners();
         return _restaurantSearch = response;
       }
     } catch (e) {
-      _state = ResultSearchState.error;
+      _state = ResultState.error;
       notifyListeners();
       return _message = 'Errors --> Tidak ada koneksi Internet';
     }
