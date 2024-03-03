@@ -1,27 +1,27 @@
 import 'dart:convert';
 
-class RestaurantSearch {
+class RestaurantSearchData {
   bool error;
   int founded;
-  List<Restaurant> restaurants;
+  List<RestaurantSearch> restaurants;
 
-  RestaurantSearch({
+  RestaurantSearchData({
     required this.error,
     required this.founded,
     required this.restaurants,
   });
 
-  factory RestaurantSearch.fromRawJson(String str) =>
-      RestaurantSearch.fromJson(json.decode(str));
+  factory RestaurantSearchData.fromRawJson(String str) =>
+      RestaurantSearchData.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory RestaurantSearch.fromJson(Map<String, dynamic> json) =>
-      RestaurantSearch(
+  factory RestaurantSearchData.fromJson(Map<String, dynamic> json) =>
+      RestaurantSearchData(
         error: json["error"],
         founded: json["founded"],
-        restaurants: List<Restaurant>.from(
-            json["restaurants"].map((x) => Restaurant.fromJson(x))),
+        restaurants: List<RestaurantSearch>.from(
+            json["restaurants"].map((x) => RestaurantSearch.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -31,7 +31,7 @@ class RestaurantSearch {
       };
 }
 
-class Restaurant {
+class RestaurantSearch {
   String id;
   String name;
   String description;
@@ -39,7 +39,7 @@ class Restaurant {
   String city;
   double rating;
 
-  Restaurant({
+  RestaurantSearch({
     required this.id,
     required this.name,
     required this.description,
@@ -48,12 +48,13 @@ class Restaurant {
     required this.rating,
   });
 
-  factory Restaurant.fromRawJson(String str) =>
-      Restaurant.fromJson(json.decode(str));
+  factory RestaurantSearch.fromRawJson(String str) =>
+      RestaurantSearch.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory Restaurant.fromJson(Map<String, dynamic> json) => Restaurant(
+  factory RestaurantSearch.fromJson(Map<String, dynamic> json) =>
+      RestaurantSearch(
         id: json["id"],
         name: json["name"],
         description: json["description"],
