@@ -6,7 +6,7 @@ import 'package:restaurant_app/data/api/api_services.dart';
 import 'package:flutter/material.dart';
 import 'package:restaurant_app/data/model/restaurant_detail.dart';
 
-enum ResultState { loading, noData, hasData, error }
+import '../utils/result_state.dart';
 
 class RestaurantDetailProvider extends ChangeNotifier {
   late final ApiService apiService;
@@ -17,13 +17,13 @@ class RestaurantDetailProvider extends ChangeNotifier {
     _getDetailRestaurant(restaurantId);
   }
 
-  late RestaurantDetail _restaurantDetail;
+  late RestaurantDetailData _restaurantDetail;
   late ResultState _state;
   String _message = "";
 
   String get message => _message;
 
-  RestaurantDetail get resultRestaurantDetail => _restaurantDetail;
+  RestaurantDetailData get resultRestaurantDetail => _restaurantDetail;
 
   ResultState get state => _state;
 
