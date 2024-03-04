@@ -5,12 +5,12 @@ import 'package:restaurant_app/data/model/restaurant_detail.dart';
 import 'package:restaurant_app/data/model/restaurant_search.dart';
 
 class ApiService {
-  static const String _baseUrl = 'https://restaurant-api.dicoding.dev';
+  static const String baseUrl = 'https://restaurant-api.dicoding.dev';
   static const String linkImage =
       "https://restaurant-api.dicoding.dev/images/medium/";
 
   Future<RestaurantListData> getAllRestaurant() async {
-    final response = await http.get(Uri.parse("$_baseUrl/list"));
+    final response = await http.get(Uri.parse("$baseUrl/list"));
     if (response.statusCode == 200) {
       final dynamic jsonResponse = jsonDecode(response.body);
       if (jsonResponse is Map<String, dynamic>) {
@@ -25,7 +25,7 @@ class ApiService {
   }
 
   Future<RestaurantDetailData> getDetailRestaurant(String id) async {
-    final response = await http.get(Uri.parse("$_baseUrl/detail/$id"));
+    final response = await http.get(Uri.parse("$baseUrl/detail/$id"));
     if (response.statusCode == 200) {
       final dynamic jsonResponse = jsonDecode(response.body);
       if (jsonResponse is Map<String, dynamic>) {
@@ -40,7 +40,7 @@ class ApiService {
   }
 
   Future<RestaurantSearchData> findRestaurant(String query) async {
-    final response = await http.get(Uri.parse("$_baseUrl/search?q=$query"));
+    final response = await http.get(Uri.parse("$baseUrl/search?q=$query"));
     if (response.statusCode == 200) {
       final dynamic jsonResponse = jsonDecode(response.body);
       if (jsonResponse is Map<String, dynamic>) {
@@ -57,7 +57,7 @@ class ApiService {
   Future<CustomerReview> addCustomerReview(
       String restaurantId, String name, String review) async {
     final response = await http.post(
-      Uri.parse("$_baseUrl/review"),
+      Uri.parse("$baseUrl/review"),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },
