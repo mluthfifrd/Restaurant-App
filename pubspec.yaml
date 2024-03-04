@@ -28,6 +28,8 @@ dev_dependencies:
 
   flutter_lints: ^2.0.0
   flutter_rating_bar: ^4.0.1
+  mockito: ^5.4.4
+  build_runner: ^2.4.8
 
 # Command for run flutter splash screen:
 # dart run flutter_native_splash:create
